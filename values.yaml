@@ -10,7 +10,7 @@ image:
 service:
   type: NodePort
   port: 2049
-  externalTrafficPolicy: Local
+  externalTrafficPolicy: Cluster
 
 # We usually recommend not to specify default resources and to leave this as a conscious
 # choice for the user. This also increases chances charts run on environments with little
@@ -30,7 +30,7 @@ tolerations: []
 affinity: {}
 
 persistence:
-  enabled: false
+  enabled: true
   ## A manually managed Persistent Volume and Claim
   ## Requires persistence.enabled: true
   ## If defined, PVC must be created manually before volume will be bound
@@ -45,4 +45,4 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  #storageClass: longhorn
+  storageClass: longhorn

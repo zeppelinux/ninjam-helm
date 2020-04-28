@@ -14,6 +14,7 @@ creates _public-ninjam-server_ deployment and all the resources
 ###### Configuration
 
 ConFigMap as a config-volume is mounted as /usr/local/ninjam/config.cfg
+If you want to edit config.cfg (disable session recordings for ex.) - edit Config Map and restart the Pod (or send signal to the process)
 
 ###### Session Persistence
 
