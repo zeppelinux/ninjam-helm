@@ -1,10 +1,10 @@
-# Default values for teamcity.
+# Default values for ninjam-server.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 image:
   repository: zeppelinux/ninjam-server
-  tag: v0.081
+  tag: v0.082
   pullPolicy: IfNotPresent
 
 service:
@@ -12,16 +12,6 @@ service:
   port: 2049
   externalTrafficPolicy: Cluster
 
-# We usually recommend not to specify default resources and to leave this as a conscious
-# choice for the user. This also increases chances charts run on environments with little
-# resources, such as Minikube. If you do want to specify resources, uncomment the following
-# lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-#  limits:
-#    cpu: 800m
-#    memory: 968Mi
-#  requests:
-#    cpu: 600m
-#    memory: 968Mi
 
 nodeSelector: {}
 
@@ -30,14 +20,14 @@ tolerations: []
 affinity: {}
 
 persistence:
-  enabled: true
+  enabled: false
   ## A manually managed Persistent Volume and Claim
   ## Requires persistence.enabled: true
   ## If defined, PVC must be created manually before volume will be bound
   # existingClaim:
 
   accessMode: ReadWriteOnce
-  size: 1Gi
+  size: 3Gi
   ## ninjam session Persistent Volume Storage Class
   ## If defined, storageClassName: <storageClass>
   ## If set to "-", storageClassName: "", which disables dynamic provisioning
@@ -45,4 +35,4 @@ persistence:
   ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
   ##   GKE, AWS & OpenStack)
   ##
-  storageClass: longhorn
+  #storageClass: longhorn
