@@ -1,14 +1,27 @@
 # ninjam-helm
 Helm Chart for Ninjam Server deployment to Kubernetes
 
-Sample deployment to the namespace ninjam:
+###### Sample deployment:
 
-helm install private /path/to/ninjam-helm -n=ninjam
+`helm install private /path/to/ninjam-helm`
 
-will create private-ninjam-server deployment and all the resources
+creates _private-ninjam-server_ deployment and all the resources in default namespace
 
-helm install public /path/to/ninjam-helm -n=ninjam
+`helm install public /path/to/ninjam-helm`
 
-will create public-ninjam-server deployment and all the resources
+creates _public-ninjam-server_ deployment and all the resources
 
-config-volume (for example private-ninjam) is mounted as a file /usr/local/ninjam/config.cfg
+###### Configuration
+
+ConFigMap as a config-volume is mounted as /usr/local/ninjam/config.cfg
+
+###### Session Persistence
+
+All the sessions are persisted in /usr/local/ninjam/sessions out of the box in the container.
+If you want to make sure sessions survive pod restart - enable persistence in the values.yaml and specify **storageClass**.
+
+###### Expose to the world
+Default service type is NodePort, if you want to expose your Pod to the outside - capture the port number and the Node IP 
+and use them to configure firewall/port mapping rule in your network router.
+Default _externalTrafficPolicy_ is _Local_, i.e. if you want to expose all your Pods using one Node change it to _Cluster_
+
